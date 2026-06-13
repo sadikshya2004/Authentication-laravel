@@ -13,4 +13,35 @@ class AuthController extends Controller
     {
         return view('login');
     }
+
+// handles the login 
+public function login(Request $request)
+{
+    $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))){
+            $request->session()->regenerate();
+            return redirect('/dashboard');
+        } 
+        return back()->withErrors([
+            'email' => 'Invalid credentials.',
+        ])->onlyInput('email');
+}
+// shows the dashboard
+public function dashboard()
+{
+    return view('dashboard', [
+        'user' => Auth::user()
+    ]);
+}
+// handles the logout
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+}
 }
