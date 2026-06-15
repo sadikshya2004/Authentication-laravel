@@ -141,6 +141,11 @@
             var x = document.getElementById("password");
             x.type = (x.type === "password") ? "text" : "password";
         }
+        document.querySelector("form").addEventListener("submit", function() {
+        const btn = document.querySelector("button");
+        btn.innerHTML = "Logging in...";
+        btn.disabled = true;
+    });
     </script>
 </body>
 </html>
