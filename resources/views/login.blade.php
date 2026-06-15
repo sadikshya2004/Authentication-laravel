@@ -75,6 +75,28 @@
         cursor:pointer;
         transition:0.3s;
     }
+    
+    button:hover{
+        background:#5563d6;
+        transform:translateY(-2px);
+    }
+
+    button:active{
+        transform:translateY(0);
+    }
+
+    input:not([type="checkbox"]) {
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    transition:0.3s;
+    }
+
+    p{
+    font-size:14px;
+    }
         </style>
 </head>
 <body>
