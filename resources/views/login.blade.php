@@ -27,6 +27,21 @@
         width:380px;
         box-shadow:0 10px 25px rgba(0,0,0,0.2);
     }
+    h2{
+        position:absolute;
+        top:130px;
+        color:white;
+        font-size:32px;
+        font-weight:bold;
+    }
+
+    label{
+        display:block;
+        margin-bottom:6px;
+        font-weight:bold;
+        color:#333;
+    }
+
         </style>
 </head>
 <body>
