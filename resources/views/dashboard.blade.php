@@ -17,6 +17,41 @@
             align-items:center;
             background:linear-gradient(135deg, #667eea, #764ba2);
         }
+          .dashboard-container{
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            text-align:center;
+            width:400px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            color:#333;
+            margin-bottom:25px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#dc3545;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#c82333;
+            transform:translateY(-2px);
+        }
+
+        button:active{
+            transform:translateY(0);
+        }
         
 </style>
 </head>
