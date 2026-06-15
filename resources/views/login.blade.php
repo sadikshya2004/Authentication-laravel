@@ -41,7 +41,40 @@
         font-weight:bold;
         color:#333;
     }
+   input[type="email"],
+    input[type="password"]{
+        width:100%;
+        padding:12px;
+        border:1px solid #ccc;
+        border-radius:8px;
+        font-size:15px;
+        transition:0.3s;
+    }
 
+    input[type="email"]:focus,
+    input[type="password"]:focus{
+        outline:none;
+        border-color:#667eea;
+        box-shadow:0 0 8px rgba(102,126,234,0.4);
+    }
+
+    input[type="checkbox"]{
+        margin-right:5px;
+        cursor:pointer;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        background:#667eea;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+    }
         </style>
 </head>
 <body>
