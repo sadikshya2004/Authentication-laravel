@@ -64,5 +64,12 @@
         <button type="submit">Logout</button>
     </form>
 </div>
+ <script>
+        document.querySelector("form").addEventListener("submit", function() {
+            const btn = document.querySelector("button");
+            btn.innerHTML = "Logging out...";
+            btn.disabled = true;
+        });
+    </script>
 </body>
 </html>
