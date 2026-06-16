@@ -44,4 +44,19 @@ public function logout(Request $request)
     $request->session()->regenerateToken();
     return redirect('/');
 }
+
+// shows the registration page
+public function showRegister()
+{
+    return view('register');}
+// handles the registration
+public function register(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+
+}
 }
