@@ -19,7 +19,9 @@ class UserController extends Controller
                   ->orWhere('role', 'like', "%{$search}%");
             });
         }
-        //
+        $users = $query->latest()->paginate(10)->withQueryString();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -27,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+         return view('users.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:admin,user',
+        ]);
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
