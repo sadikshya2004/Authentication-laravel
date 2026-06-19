@@ -32,8 +32,23 @@ public function login(Request $request)
 // shows the dashboard
 public function dashboard()
 {
+    $totalUsers = User::count();
+
+    $adminUsers = User::where('role', 'admin')->count();
+
+    $regularUsers = User::where('role', 'user')->count();
+
+    $monthlyUsers = User::whereMonth(
+        'created_at',
+        now()->month
+    )->count();
+
     return view('dashboard', [
-        'user' => Auth::user()
+        'user' => Auth::user(),
+        'totalUsers' => $totalUsers,
+        'adminUsers' => $adminUsers,
+        'regularUsers' => $regularUsers,
+        'monthlyUsers' => $monthlyUsers,
     ]);
 }
 // handles the logout
