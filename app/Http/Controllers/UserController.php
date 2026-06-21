@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -12,19 +12,25 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('role', 'like', "%{$search}%");
-            });
-        }
-        $users = $query->latest()->paginate(10)->withQueryString();
+    {  
+    $query = User::query();
 
-        return view('users.index', compact('users'));
+    $search = $request->search;
+
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%")
+              ->orWhere('role', 'like', "%{$search}%");
+        });
     }
+
+    $users = $query->latest()->paginate(10)->withQueryString();
+
+    return view('users.index', compact('users'));
+    }
+    
+
 
     /**
      * Show the form for creating a new resource.
