@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\http\Controllers\UserController;
+use App\Http\Controllers\UserController;
 //here we define the routes for our application, linking them to the appropriate controller methods.
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
