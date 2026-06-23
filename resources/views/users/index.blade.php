@@ -7,6 +7,20 @@
 
 <h2>User Management</h2>
 <a href="{{ route('users.create') }}">Create User</a>
+<br><br>
+<form method="GET" action="{{ route('users.index') }}">
+
+    <input type="text"
+           name="search"
+           placeholder="Search name, email or role"
+           value="{{ request('search') }}">
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+<br>
 <table border="1" cellpadding="10">
     <tr>
         <th>ID</th>
