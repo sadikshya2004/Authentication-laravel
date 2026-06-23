@@ -6,13 +6,7 @@
 <body>
 
 <h2>User Management</h2>
-
-<a href="{{ route('users.create') }}">
-    Create User
-</a>
-
-<br><br>
-
+<a href="{{ route('users.create') }}">Create User</a>
 <table border="1" cellpadding="10">
     <tr>
         <th>ID</th>

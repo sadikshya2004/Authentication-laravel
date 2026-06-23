@@ -99,7 +99,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('success', 'User modifications persisted safely.');
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
