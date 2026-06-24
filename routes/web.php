@@ -16,6 +16,10 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
+Route::get('/profile', [AuthController::class, 'profile'])
+->name('profile');
+Route::put('/profile', [AuthController::class, 'updateProfile'])
+->name('profile.update');
 
 Route::middleware(['role:admin'])->group(function () {
 Route::resource('users', UserController::class);

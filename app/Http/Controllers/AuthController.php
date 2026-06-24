@@ -80,5 +80,21 @@ public function register(Request $request)
     return redirect('/login')
         ->with('success', 'Registration successful. Please login.');
 }
+// UPDATE PROFILE
+public function updateProfile(Request $request)
+{
+    $user = Auth::user();
 
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+    ]);
+
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return back()->with('success', 'Profile updated successfully.');
+}
 }
