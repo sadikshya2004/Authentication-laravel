@@ -38,10 +38,9 @@ public function dashboard()
 
     $regularUsers = User::where('role', 'user')->count();
 
-    $monthlyUsers = User::whereMonth(
-        'created_at',
-        now()->month
-    )->count();
+    $monthlyUsers = User::whereMonth('created_at', now()->month )
+    ->whereYear('created_at', now()->year)
+        ->count();
 
     return view('dashboard', [
         'user' => Auth::user(),
