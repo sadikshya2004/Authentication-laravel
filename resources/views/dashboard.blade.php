@@ -76,9 +76,9 @@
         <br><br>
     @endif
 
-    <!-- <a href="{{ route('profile') }}">
+     <a href="{{ route('profile') }}">
         Profile
-    </a> -->
+    </a> 
 
     <br><br>
 

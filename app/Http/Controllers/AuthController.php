@@ -80,6 +80,13 @@ public function register(Request $request)
     return redirect('/login')
         ->with('success', 'Registration successful. Please login.');
 }
+// SHOW PROFILE PAGE
+public function profile()
+{
+    return view('profile', [
+        'user' => Auth::user()
+    ]);
+}
 // UPDATE PROFILE
 public function updateProfile(Request $request)
 {
