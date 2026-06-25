@@ -4,7 +4,7 @@
     <title>Create User</title>
 </head>
 <body>
-
+@include('layouts.navbar')
 <h2>Create User</h2>
 
 <form method="POST" action="{{ route('users.store') }}">

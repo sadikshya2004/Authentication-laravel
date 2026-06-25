@@ -100,7 +100,6 @@
         </style>
 </head>
 <body>
-    <h2>Login</h2>
     <form method="POST" action="/login">
         @csrf
         

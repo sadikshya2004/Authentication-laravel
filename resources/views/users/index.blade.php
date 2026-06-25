@@ -4,7 +4,7 @@
     <title>User Management</title>
 </head>
 <body>
-
+@include('layouts.navbar')
 <h2>User Management</h2>
 <a href="{{ route('users.create') }}">Create User</a>
 <br><br>

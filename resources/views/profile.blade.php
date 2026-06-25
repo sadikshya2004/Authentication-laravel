@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-
+@include('layouts.navbar')
 <div class="profile-container">
 
     <h2>My Profile</h2>

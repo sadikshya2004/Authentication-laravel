@@ -4,7 +4,7 @@
     <title>Edit User</title>
 </head>
 <body>
-
+@include('layouts.navbar')
 <h2>Edit User</h2>
 
 <form method="POST" action="{{ route('users.update', $user->id) }}">
