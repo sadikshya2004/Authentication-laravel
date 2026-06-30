@@ -1,25 +1,22 @@
 @extends('layouts.app')
 @section('content')
 <nav class="navbar">
-    <!-- Left Side: Logo/Brand -->
-    <a href="/dashboard" class="nav-brand">
-        User Management System
-    </a>
+    <a href="/dashboard" class="nav-brand">User Management</a>
 
-    <!-- Center/Right Side: Links -->
     <div class="nav-links">
         <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
         <a href="{{ route('profile') }}" class="{{ Request::is('profile') ? 'active' : '' }}">Profile</a>
-        
-        @if(Auth::user() && Auth::user()->role == 'admin')
-            <a href="{{ route('users.index') }}" class="{{ Request::is('users*') ? 'active' : '' }}">User Management</a>
+        @if(Auth::user()->role == 'admin')
+            <a href="{{ route('users.index') }}">Users</a>
         @endif
     </div>
 
-    <!-- Far Right: Logout -->
-    <form action="/logout" method="POST" style="margin: 0;">
-        @csrf
-        <button type="submit" class="btn-logout">Logout</button>
-    </form>
+    <div class="nav-right">
+        <span class="user-display-name">{{ Auth::user()->name }}</span>
+        <form action="/logout" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
+    </div>
 </nav>
 @endsection

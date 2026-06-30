@@ -1,52 +1,84 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - User Management System</title>
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     @include('layouts.navbar')
-    <div class = "page-content">
-    <div class="dashboard-container">
-    <h2>Welcome, {{ $user->name }}</h2>
-    <hr style="margin:15px 0;">
 
-    <h3>Dashboard Statistics</h3>
+    <main class="page-content">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="dashboard-header">
+                <div>
+                    <h2>Welcome, {{ Auth::user()->name }}</h2>
+                    <p style="color: var(--text-light);">
+                        @if(Auth::user()->role == 'admin')
+                            System overview and management dashboard.
+                        @else
+                            Welcome to your personal account dashboard.
+                        @endif
+                    </p>
+                </div>
+                <span class="role-badge {{ Auth::user()->role }}">
+                    {{ ucfirst(Auth::user()->role) }} Account
+                </span>
+            </div>
 
-    <p>Total Users: {{ $totalUsers }}</p>
-    <p>Admin Users: {{ $adminUsers }}</p>
-    <p>Regular Users: {{ $regularUsers }}</p>
-    <p>Users Registered This Month: {{ $monthlyUsers }}</p>
+            <hr class="divider">
 
-    <br>
+            <!-- Statistics Grid (ONLY VISIBLE TO ADMIN) -->
+            @if(Auth::user()->role == 'admin')
+                <div class="admin-section">
+                    <h3 style="margin-bottom: 20px;">System Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <p class="stat-label">Total Users</p>
+                            <p class="stat-value">{{ $totalUsers }}</p>
+                        </div>
 
-    @if(Auth::user()->role == 'admin')
-        <a href="{{ route('users.index') }}">
-            User Management
-        </a>
-        <br><br>
-    @endif
+                        <div class="stat-card">
+                            <p class="stat-label">Admin Users</p>
+                            <p class="stat-value">{{ $adminUsers }}</p>
+                        </div>
 
-     <a href="{{ route('profile') }}">
-        Profile
-    </a> 
+                        <div class="stat-card">
+                            <p class="stat-label">Regular Users</p>
+                            <p class="stat-value">{{ $regularUsers }}</p>
+                        </div>
 
-    <br><br>
+                        <div class="stat-card">
+                            <p class="stat-label">Registered This Month</p>
+                            <p class="stat-value">{{ $monthlyUsers }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-    <form method="POST" action="/logout">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+            <!-- Action Section (Visible to everyone) -->
+            <div class="action-section">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    
+                    <!-- Only Admin can see this button -->
+                    @if(Auth::user()->role == 'admin')
+                        <a href="{{ route('users.index') }}" class="btn-action btn-admin">
+                            Manage User List
+                        </a>
+                    @endif
 
-</div>
-</div>
-    
- <script>
-        document.querySelector("form").addEventListener("submit", function() {
-            const btn = document.querySelector("button");
-            btn.innerHTML = "Logging out...";
-            btn.disabled = true;
-        });
-    </script>
+                    <!-- Both can see their own profile -->
+                    <a href="{{ route('profile') }}" class="btn-action btn-profile">
+                        View My Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
-

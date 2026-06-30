@@ -1,129 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
-
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
-
-        body{
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg,#667eea,#764ba2);
-        }
-
-        .profile-container{
-            background:white;
-            width:600px;
-            padding:40px;
-            border-radius:15px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        h2{
-            text-align:center;
-            margin-bottom:20px;
-        }
-
-        label{
-            display:block;
-            margin-top:15px;
-            font-weight:bold;
-        }
-
-        input{
-            width:100%;
-            padding:12px;
-            margin-top:5px;
-            border:1px solid #ccc;
-            border-radius:8px;
-        }
-
-        button{
-            width:100%;
-            padding:12px;
-            margin-top:20px;
-            border:none;
-            border-radius:8px;
-            background:#667eea;
-            color:white;
-            font-size:16px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#5563d6;
-        }
-
-        .success{
-            color:green;
-            text-align:center;
-            margin-bottom:15px;
-        }
-
-        .error{
-            color:red;
-            font-size:14px;
-        }
-
-        a{
-            display:block;
-            text-align:center;
-            margin-top:20px;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-@include('layouts.navbar')
-<div class="profile-container">
+    @include('layouts.navbar')
 
-    <h2>My Profile</h2>
+    <main class="page-content">
+        <div class="container">
+            <!-- Sketch: "Welcome back, Name!" -->
+            <h2 class="welcome-text">Welcome back, {{ $user->name }}!</h2>
 
-    @if(session('success'))
-        <div class="success">
-            {{ session('success') }}
+            <div class="profile-grid">
+                
+                <!-- LEFT COLUMN: Profile Info Card -->
+                <div class="profile-main-card">
+                    <div class="profile-header">
+                        <div class="avatar-circle">
+                            {{ strtoupper(substr($user->name, 0, 1)) }}
+                        </div>
+                        <div class="profile-title">
+                            <h3>{{ $user->name }}</h3>
+                            <span class="role-badge {{ $user->role }}">
+                                {{ ucfirst($user->role) }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="profile-info-list">
+                        <div class="info-item">
+                            <span class="info-label">Name</span>
+                            <span class="info-value">{{ $user->name }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value">{{ $user->email }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Role</span>
+                            <span class="info-value">{{ ucfirst($user->role) }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Member since</span>
+                            <span class="info-value">{{ $user->created_at->format('F Y') }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last updated</span>
+                            <span class="info-value">{{ $user->updated_at->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Quick Actions Card -->
+                <div class="profile-actions-card">
+                    <h4>Quick Actions</h4>
+                    <div class="action-list">
+                        <a href="{{ route('profile.edit') }}" class="action-link-item">
+                            <span>Edit profile</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                        
+                        <a href="#" class="action-link-item">
+                            <span>Change password</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    @endif
-
-    <form method="POST" action="{{ route('profile.update') }}">
-        @csrf
-        @method('PUT')
-
-        <label>Name</label>
-        <input type="text"
-               name="name"
-               value="{{ old('name', $user->name) }}">
-
-        @error('name')
-            <div class="error">{{ $message }}</div>
-        @enderror
-
-        <label>Email</label>
-        <input type="email"
-               name="email"
-               value="{{ old('email', $user->email) }}">
-
-        @error('email')
-            <div class="error">{{ $message }}</div>
-        @enderror
-
-        <button type="submit">
-            Update Profile
-        </button>
-    </form>
-
-    <a href="/dashboard">
-        Back to Dashboard
-    </a>
-
-</div>
-
+    </main>
 </body>
 </html>

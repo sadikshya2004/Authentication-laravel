@@ -18,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/profile', [AuthController::class, 'profile'])
 ->name('profile');
+Route::get('/profile/edit', [AuthController::class, 'editProfile'])->name('profile.edit'); 
 Route::put('/profile', [AuthController::class, 'updateProfile'])
 ->name('profile.update');
 
