@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit User</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
 @include('layouts.navbar')
 <h2>Edit User</h2>
 
@@ -72,6 +68,4 @@
 <a href="{{ route('users.index') }}">
     Back
 </a>
-
-</body>
-</html>
+@endsection

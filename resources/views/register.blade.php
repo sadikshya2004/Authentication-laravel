@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<body>
     <div class="auth-container">
         <div class="auth-card">
             <h2>Sign Up</h2>
@@ -41,7 +40,4 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
 @endsection

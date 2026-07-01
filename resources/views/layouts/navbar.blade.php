@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <nav class="navbar">
     <a href="/dashboard" class="nav-brand">User Management</a>
 
@@ -19,4 +18,3 @@
         </form>
     </div>
 </nav>
-@endsection

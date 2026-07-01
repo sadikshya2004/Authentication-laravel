@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Management</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
 @include('layouts.navbar')
 <h2>User Management</h2>
 <a href="{{ route('users.create') }}">Create User</a>
@@ -66,6 +62,4 @@
 <br>
 
 {{ $users->links() }}
-
-</body>
-</html>
+@endsection

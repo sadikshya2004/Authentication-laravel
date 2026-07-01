@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create User</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
 @include('layouts.navbar')
 <h2>Create User</h2>
 
@@ -76,6 +72,4 @@
 <a href="{{ route('users.index') }}">
     Back to User List
 </a>
-
-</body>
-</html>
+@endsection

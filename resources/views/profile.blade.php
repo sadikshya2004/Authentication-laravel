@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
-    @include('layouts.navbar')
+@extends('layouts.app')
+@section('content')
+@include('layouts.navbar')
 
     <main class="page-content">
         <div class="container">
@@ -73,5 +66,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+@endsection
