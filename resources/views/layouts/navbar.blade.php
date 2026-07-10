@@ -4,7 +4,7 @@
 
     <div class="nav-links">
         <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
-        <a href="{{ route('profile') }}" class="{{ Request::is('profile') ? 'active' : '' }}">Profile</a>
+        <a href="{{ route('profile.show') }}" class="{{ Request::is('profile*') ? 'active' : '' }}">Profile</a>
         @if(Auth::user()->role == 'admin')
             <a href="{{ route('users.index') }}">Users</a>
         @endif

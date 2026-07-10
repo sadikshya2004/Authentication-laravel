@@ -63,7 +63,7 @@
                     @endif
 
                     <!-- Both can see their own profile -->
-                    <a href="{{ route('profile') }}" class="btn-action btn-profile">
+                    <a href="{{ route('profile.show') }}" class="btn-action btn-profile">
                         View My Profile
                     </a>
                 </div>
