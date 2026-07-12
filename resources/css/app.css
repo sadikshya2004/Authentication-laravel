@@ -365,3 +365,24 @@ button{
         flex-direction:column;
     }
 }
+/* PROFILE IMAGE */
+
+.profile-image{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    border:5px solid var(--primary);
+    display:block;
+    margin:0 auto 20px;
+}
+
+.preview-image{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--border);
+    margin-top:10px;
+}
