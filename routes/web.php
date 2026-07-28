@@ -35,7 +35,9 @@ Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
 
 Route::middleware(['role:admin'])->group(function () {
 Route::resource('users', UserController::class);
-Route::resource('categories', CategoryController::class); // Resourceful routes for categories
+Route::resource('categories', CategoryController::class); 
+Route::resource('products', ProductController::class);
+// Resourceful routes for categories
 });
 });
 
