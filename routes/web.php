@@ -33,12 +33,15 @@ Route::get('/profile/password', [ProfileController::class, 'editPassword'])
 Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
     ->name('profile.password.update');
 
+// Both Admin and User can view products
+Route::resource('products', ProductController::class)->only(['index', 'show']);
+
 Route::middleware(['role:admin'])->group(function () {
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class); 
-Route::resource('products', ProductController::class);
-// Resourceful routes for categories
-});
+// Only Admin can create, edit, update, delete products
+Route::resource('products', ProductController::class)->except(['index', 'show']);
+    });
 });
 
 Route::get('/', function () {

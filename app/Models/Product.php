@@ -31,4 +31,15 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * Map quantity to stock_quantity attribute.
+     */
+    protected function quantity(): \Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn () => $this->stock_quantity,
+            set: fn ($value) => ['stock_quantity' => $value],
+        );
+    }
 }
